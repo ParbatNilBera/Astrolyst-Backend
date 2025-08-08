@@ -16,7 +16,6 @@ const { RtcTokenBuilder, RtcRole } = require("agora-access-token");
 dotenv.config();
 
 const app = express();
-const PORT = process.env.PORT || 6000;
 
 // CORS middleware
 app.use(
@@ -81,7 +80,12 @@ app.use((req, res, next) => {
 
 app.use(errorHandler);
 
-// Start server
-app.listen(PORT, () => {
-  console.log(`Server started on http://localhost:${PORT}`);
+const PORT = process.env.PORT || 6000;
+app.listen(PORT, "0.0.0.0", () => {
+  console.log(`Server is running on port ${PORT}`);
 });
+
+// // Start server
+// app.listen(PORT, () => {
+//   console.log(`Server started on http://localhost:${PORT}`);
+// });
