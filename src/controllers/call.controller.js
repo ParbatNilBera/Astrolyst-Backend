@@ -295,15 +295,30 @@ const acceptCall = async (req, res) => {
     const io = req.app.get("io");
     const onlineUsers = req.app.get("onlineUsers");
     const callerSocketId = onlineUsers.get(String(call.user._id));
-    if (callerSocketId) {
-      io.to(callerSocketId).emit("call_accepted", {
-        callId: call._id,
-        channelName: call.channelName,
-        astrologer: {
-          id: astrologerId,
-          name: req.user.name,
-        },
-      });
+    // if (callerSocketId) {
+    //   io.to(callerSocketId).emit("call_accepted", {
+    //     callId: call._id,
+    //     channelName: call.channelName,
+    //     astrologer: {
+    //       id: astrologerId,
+    //       name: req.user.name,
+    //     },
+    //   });
+    // }
+
+    const callerSocketIds = onlineUsers.get(String(call.user._id)); // This is a Set
+
+    if (callerSocketIds && callerSocketIds.size > 0) {
+      for (const socketId of callerSocketIds) {
+        io.to(socketId).emit("call_accepted", {
+          callId: call._id,
+          channelName: call.channelName,
+          astrologer: {
+            id: astrologerId,
+            name: req.user.name,
+          },
+        });
+      }
     }
 
     // also respond to astrologer with channelName so astrologer can navigate immediately
