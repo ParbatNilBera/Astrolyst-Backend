@@ -36,4 +36,11 @@ router.get("/get-my-bookings", protect, getUserBookings);
  */
 router.post("/book-my-appointment", protect, bookAppointmentController);
 
+/**
+ * @route   POST /api/user/talk-to-astroger
+ * @desc    Call Now
+ * @access  Private
+ */
+router.post("/talk-to-astroger", protect, bookAppointmentController);
+
 module.exports = router;

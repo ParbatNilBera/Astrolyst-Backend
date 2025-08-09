@@ -193,7 +193,6 @@ const loginByRole = async (req, res, role) => {
 
     const isMatch = await bcrypt.compare(password, user.password);
     if (!isMatch) return response(res, 401, "Invalid credentials");
-
     const data = {
       _id: user._id,
       name: user.name,

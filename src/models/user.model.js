@@ -53,6 +53,10 @@ const userSchema = new mongoose.Schema(
         ref: "Community",
       },
     ],
+    isAvailableForCall: {
+      type: Boolean,
+      default: false,
+    },
 
     // Astrology-Specific
     kundli: {

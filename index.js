@@ -10,6 +10,7 @@ const astrologerRoutes = require("./src/routes/astrologer.route");
 const comunityRoutes = require("./src/routes/comunity.route");
 const postRoutes = require("./src/routes/post.route");
 const userRoutes = require("./src/routes/user.route");
+const callRoutes = require("./src/routes/call.routes");
 const { RtcTokenBuilder, RtcRole } = require("agora-access-token");
 
 // Load env variables early
@@ -70,6 +71,7 @@ app.use("/api/astrologer", astrologerRoutes);
 app.use("/api/comunity", comunityRoutes);
 app.use("/api/post", postRoutes);
 app.use("/api/user", userRoutes);
+app.use("/api/call", callRoutes);
 
 //404 handler — only after all routes
 app.use((req, res, next) => {
