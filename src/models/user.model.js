@@ -63,6 +63,10 @@ const userSchema = new mongoose.Schema(
       type: Object, // JSON returned from Kundli API
       default: {},
     },
+    isOnCall: {
+      type: Boolean,
+      default: false,
+    },
 
     totalReviews: {
       type: Number,
